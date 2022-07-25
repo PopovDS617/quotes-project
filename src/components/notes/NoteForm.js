@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
-import Card from "../ui/Card";
-import LoadingSpinner from "../ui/LoadingSpinner";
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./NoteForm.module.css";
 
 const NoteForm = (props) => {
@@ -16,7 +16,7 @@ const NoteForm = (props) => {
 
     // optional: Could validate here
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onAddNote({ author: enteredAuthor, text: enteredText });
   }
 
   return (
@@ -37,7 +37,7 @@ const NoteForm = (props) => {
           <textarea id="text" rows="5" ref={textInputRef}></textarea>
         </div>
         <div className={classes.actions}>
-          <button className="btn">Add Quote</button>
+          <button className="btn">Add Note</button>
         </div>
       </form>
     </Card>
