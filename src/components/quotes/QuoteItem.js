@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
-import classes from "./NoteItem.module.css";
-import { useParams } from "react-router-dom";
+import classes from "./QuoteItem.module.css";
 
-const NoteItem = (props) => {
-  const params = useParams();
-
+const QuoteItem = (props) => {
   return (
     <li className={classes.item}>
       <figure>
@@ -13,11 +10,11 @@ const NoteItem = (props) => {
         </blockquote>
         <figcaption>{props.author}</figcaption>
       </figure>
-      <Link to={`notes/${props.id}`} className="btn">
+      <Link to={`quotes/${props.id}`} className="btn">
         View Fullscreen
       </Link>
     </li>
   );
 };
 
-export default NoteItem;
+export default QuoteItem;
