@@ -33,12 +33,7 @@ const AllQuotes = () => {
     return <NoQuotesFound />;
   }
 
-  return (
-    <React.Fragment>
-      <h1>All quotes page</h1>
-      <QuoteList quotes={loadedQuotes} />
-    </React.Fragment>
-  );
+  return <QuoteList quotes={loadedQuotes} />;
 };
 
 export default AllQuotes;

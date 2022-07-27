@@ -16,13 +16,16 @@ const Comments = () => {
   const startAddCommentHandler = () => {
     setIsAddingComment(true);
   };
+  const finishAddCommentHandler = () => {
+    setIsAddingComment(false);
+  };
 
   const {
     sendRequest,
     status,
     error,
     data: loadedComments,
-  } = useHttp(getAllComments, true);
+  } = useHttp(getAllComments);
 
   const addedCommentHandler = useCallback(() => {
     sendRequest(quoteId);
@@ -43,7 +46,7 @@ const Comments = () => {
   }
 
   if (status === "completed" && loadedComments && loadedComments.length > 0) {
-    <CommentsList comments={loadedComments} />;
+    comments = <CommentsList comments={loadedComments} />;
   }
 
   if (
@@ -65,6 +68,7 @@ const Comments = () => {
         <NewCommentForm
           quoteId={params.quoteId}
           onAddedComment={addedCommentHandler}
+          onFinishComment={finishAddCommentHandler}
         />
       )}
       {comments}

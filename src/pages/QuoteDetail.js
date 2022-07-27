@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, useParams, Link, useRouteMatch } from "react-router-dom";
+import { Route, Routes, useParams, Link, Outlet } from "react-router-dom";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
@@ -21,8 +21,6 @@ const QuoteDetail = () => {
   useEffect(() => {
     sendRequest(quoteId);
   }, [sendRequest, quoteId]);
-
-  const match = useRouteMatch();
 
   if (status === "pending") {
     return (
@@ -49,18 +47,7 @@ const QuoteDetail = () => {
         author={loadedQuote.author}
         id={loadedQuote.id}
       />
-
-      <Route path={`/quotes/${quoteId}/`} exact>
-        <div className="centered">
-          <Link to={`${match.url}/comments`} className="btn--flat">
-            to comments
-          </Link>
-        </div>
-      </Route>
-
-      <Route path={`${match.path}/comments`}>
-        <Comments />
-      </Route>
+      <Outlet />
     </React.Fragment>
   );
 };
