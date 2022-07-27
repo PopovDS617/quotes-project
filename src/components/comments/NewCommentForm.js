@@ -7,26 +7,24 @@ import classes from "./NewCommentForm.module.css";
 
 const NewCommentForm = (props) => {
   const { onAddedComment } = props;
-
-  const { status, sendRequest, error } = useHttp(addComment, true);
+  const { status, sendRequest, error } = useHttp(addComment);
 
   const commentTextRef = useRef();
-
-  const submitFormHandler = (event) => {
-    event.preventDefault();
-    sendRequest({
-      commentData: {
-        text: commentTextRef.current.value,
-      },
-      quoteId: props.quoteId,
-    });
-  };
 
   useEffect(() => {
     if (status === "completed" && !error) {
       onAddedComment();
     }
   }, [status, error, onAddedComment]);
+
+  const submitFormHandler = (event) => {
+    event.preventDefault();
+    const enteredText = commentTextRef.current.value;
+    sendRequest({
+      commentData: { text: enteredText },
+      quoteId: props.quoteId,
+    });
+  };
 
   return (
     <form className={classes.form} onSubmit={submitFormHandler}>

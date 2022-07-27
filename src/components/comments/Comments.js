@@ -17,18 +17,13 @@ const Comments = () => {
     setIsAddingComment(true);
   };
 
-  const {
-    sendRequest,
-    status,
-    error,
-    data: loadedComments,
-  } = useHttp(getAllComments, true);
+  const { sendRequest, status, data: loadedComments } = useHttp(getAllComments);
 
-  const addedCommentHandler = useCallback(() => {
+  useEffect(() => {
     sendRequest(quoteId);
   }, [sendRequest, quoteId]);
 
-  useEffect(() => {
+  const addedCommentHandler = useCallback(() => {
     sendRequest(quoteId);
   }, [sendRequest, quoteId]);
 
@@ -43,14 +38,14 @@ const Comments = () => {
   }
 
   if (status === "completed" && loadedComments && loadedComments.length > 0) {
-    <CommentsList comments={loadedComments} />;
+    comments = <CommentsList comments={loadedComments} />;
   }
 
   if (
     status === "completed" &&
     (!loadedComments || loadedComments.length === 0)
   ) {
-    comments = <p className="centered">No comments were added yet</p>;
+    comments = <p className="centered">No comments were added yet!</p>;
   }
 
   return (
@@ -63,7 +58,7 @@ const Comments = () => {
       )}
       {isAddingComment && (
         <NewCommentForm
-          quoteId={params.quoteId}
+          quoteId={quoteId}
           onAddedComment={addedCommentHandler}
         />
       )}
