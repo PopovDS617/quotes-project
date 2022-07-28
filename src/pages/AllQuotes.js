@@ -1,10 +1,10 @@
 import { useEffect } from "react";
+
 import QuoteList from "../components/quotes/QuoteList";
-import React from "react";
-import useHttp from "../hooks/use-http";
-import { getAllQuotes } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import NoQuotesFound from "../components/quotes/NoQuotesFound";
+import useHttp from "../hooks/use-http";
+import { getAllQuotes } from "../lib/api";
 
 const AllQuotes = () => {
   const {
@@ -25,8 +25,9 @@ const AllQuotes = () => {
       </div>
     );
   }
+
   if (error) {
-    return <p className="centered">{error}</p>;
+    return <p className="centered focused">{error}</p>;
   }
 
   if (status === "completed" && (!loadedQuotes || loadedQuotes.length === 0)) {

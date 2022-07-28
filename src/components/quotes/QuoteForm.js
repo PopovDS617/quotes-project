@@ -16,7 +16,11 @@ const QuoteForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onAddQuote({
+      author: enteredAuthor,
+      text: enteredText,
+      //id: Math.random(),
+    });
   }
 
   const formFocusHandler = () => {
